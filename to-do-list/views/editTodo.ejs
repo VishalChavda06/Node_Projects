@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Edit Todo</h1>
+<form action="/updateTodo/<%= EditId.id %>" method="POST">
+  <label>Title:</label>
+  <input type="text" name="title" value="<%= EditId.title %>" required><br>
+
+  <label>Description:</label>
+  <textarea name="description"><%= EditId.description %></textarea><br>
+
+  <label>Date:</label>
+  <input type="date" name="date" value="<%= EditId.date %>"><br>
+
+  <label>Task Level:</label>
+  <input type="text" name="task_level" value="<%= EditId.task_level %>"><br>
+
+  <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
+import crypto from "crypto"
+import { render } from "ejs";
 
 const app = express()
 
@@ -35,6 +37,7 @@ app.post("/todoForm", (req, res) => {
   let task_level = req.body.task_level
 
   let todoList = {
+    id: crypto.randomUUID(),
     title: title,
     description: description,
     date: date,
@@ -43,9 +46,49 @@ app.post("/todoForm", (req, res) => {
 
   todoLists.push(todoList)
   console.log(todoLists);
-  console.log("TodoList are successfully added..!!");
+  console.log(" 🟢 TodoList are successfully added..!!");
 
   return res.redirect("/")
 })
 
+// Delete TodoList
+app.get("/deleteTodo/:id", (req, res) => {
+  const id = req.params.id;
+  todoLists = todoLists.filter(todo => todo.id !== id);
+  console.log(` 🔴 Deleted TodoList..!! `);
+  console.log(todoLists)
+  return res.redirect("/");
+})
+
+// Edit TodoList
+
+app.get("/editTodo/:id", (req, res) => {
+  const todoEdit = req.params.id;
+  console.log("TodoEditId", todoEdit);
+
+  const EditId = todoLists.find((t) => t.id === todoEdit);
+  if (!EditId) {
+    return res.status(404).send("Todo not Found");
+  }
+  console.log(" ✏️ ready to change ", EditId);
+  return res.render("editTodo", { EditId });
+});
+
+app.post("/updateTodo/:id", (req, res) => {
+  const TodoId = req.params.id;
+  console.log("TodoList Id", TodoId);
+
+  todoLists = todoLists.map((todo) => {
+    if (todo.id === TodoId) {
+      todo.title = req.body.title;
+      todo.description = req.body.description;
+      todo.date = req.body.date;
+      todo.task_level = req.body.task_level;
+    }
+    return todo;
+  });
+  console.log(` 🔵 TodoList successFully Updated..!! `);
+  console.log(todoLists);
+  return res.redirect("/");
+});
 
