@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodoList</title>
+</head>
+
+<body>
+  <h1>To Do List</h1>
+  <form action="./todoForm" method="POST">
+    <div>
+      <label for="title">title</label>
+      <input type="text" name="title">
+    </div>
+    <div>
+      <label for="description">description</label>
+      <input type="text" name="description">
+    </div>
+    <div>
+      <label for="date">Date</label>
+      <input type="date" name="date" id="">
+    </div>
+    <div>
+      <label for="task_level">Task Level</label>
+      <select name="task_level" id="">
+        <option value="">Select Task Level</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+      </select>
+    </div>
+    <input type="submit" value="Create Task">
+  </form>
+
+  <!-- Show TodoList here -->
+
+  <div>
+    <h2>
+      <% todoLists.map((data)=>{ %>
+        <p> <span>Title:</span>
+          <%= data.title %>
+        </p>
+        <p> <span>description:</span>
+          <%= data.description %>
+        </p>
+        <p> <span>Date:</span>
+          <%= data.date %>
+        </p>
+        <p> <span>Level:</span>
+          <%= data.task_level %>
+        </p>
+
+        <div>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+
+        <% }) %>
+    </h2>
+  </div>
+
+</body>
+
+</html>
