@@ -5,60 +5,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TodoList</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
-  <h1>To Do List</h1>
-  <form action="./todoForm" method="POST">
+<body class="bg-gray-600 min-h-screen flex flex-col items-center py-10">
+
+  <h1 class="text-4xl font-bold text-white mb-8">📝 My To-Do List</h1>
+
+  <!-- Form -->
+  <form action="./todoForm" method="POST"
+    class="bg-white p-6 rounded-xl shadow-lg w-full max-w-md space-y-4 border border-orange-200">
+
     <div>
-      <label for="title">title</label>
-      <input type="text" name="title">
+      <label for="title" class="block text-sm font-semibold text-gray-700 mb-1">Title</label>
+      <input type="text" name="title" placeholder="Enter task title"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
     </div>
+
     <div>
-      <label for="description">description</label>
-      <input type="text" name="description">
+      <label for="description" class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+      <input type="text" name="description" placeholder="Enter task description"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
     </div>
+
     <div>
-      <label for="date">Date</label>
-      <input type="date" name="date" id="">
+      <label for="date" class="block text-sm font-semibold text-gray-700 mb-1">Date</label>
+      <input type="date" name="date"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
     </div>
+
     <div>
-      <label for="task_level">Task Level</label>
-      <select name="task_level" id="">
+      <label for="task_level" class="block text-sm font-semibold text-gray-700 mb-1">Task Level</label>
+      <select name="task_level"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400">
         <option value="">Select Task Level</option>
         <option value="Easy">Easy</option>
         <option value="Medium">Medium</option>
         <option value="Hard">Hard</option>
       </select>
     </div>
-    <input type="submit" value="Create Task">
+
+    <button type="submit"
+      class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg shadow-md transition">
+      Create Task
+    </button>
   </form>
 
-  <!-- Show TodoList here -->
-
-  <div>
-    <h2>
-      <% todoLists.map((data)=>{ %>
-        <p> <span>Title:</span>
+  <!-- Todo List Display -->
+  <div class="mt-10 w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% todoLists.map((data)=>{ %>
+      <div class="bg-white p-5 rounded-xl shadow-lg border-t-4 
+              <%= data.task_level === 'Easy' ? 'border-orange-400' : 
+                  data.task_level === 'Medium' ? 'border-amber-500' : 
+                  'border-red-500' %>">
+        <h2 class="text-xl font-bold text-gray-800 mb-2">
           <%= data.title %>
-        </p>
-        <p> <span>description:</span>
+        </h2>
+        <p class="text-gray-600 mb-1"><span class="font-semibold">Description:</span>
           <%= data.description %>
         </p>
-        <p> <span>Date:</span>
+        <p class="text-gray-600 mb-1"><span class="font-semibold">Date:</span>
           <%= data.date %>
         </p>
-        <p> <span>Level:</span>
+        <p class="text-gray-600 mb-3"><span class="font-semibold">Level:</span>
           <%= data.task_level %>
         </p>
 
-        <div>
-          <button><a href="/editTodo/<%= data.id %>">Edit</a></button>
-          <button><a href="/deleteTodo/<%= data.id %>">Delete</a></button>
+        <div class="flex space-x-3">
+          <a href="/editTodo/<%= data.id %>"
+            class="bg-amber-400 hover:bg-amber-500 text-white px-4 py-1 rounded-lg shadow-sm transition">Edit</a>
+          <a href="/deleteTodo/<%= data.id %>"
+            class="bg-red-400 hover:bg-red-500 text-white px-4 py-1 rounded-lg shadow-sm transition">Delete</a>
         </div>
-
-        <% }) %>
-    </h2>
+      </div>
+      <% }) %>
   </div>
 
 </body>

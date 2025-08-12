@@ -1,7 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
 import crypto from "crypto"
-import { render } from "ejs";
 
 const app = express()
 
