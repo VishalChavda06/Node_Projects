@@ -122,6 +122,10 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <div className='text-center text-sm text-gray-500 flex flex-col gap-2 ms-2'>
+        <span> Email: admin@admin.com</span>
+        <span> Password: admin123</span>
+      </div>
     </div>
   );
 };
