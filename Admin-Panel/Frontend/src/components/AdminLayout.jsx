@@ -59,13 +59,13 @@ const AdminLayout = ({ children }) => {
                     to={item.href}
                     className={`${
                       isActive
-                        ? 'bg-primary-100 text-primary-900'
+                        ? 'bg-blue-100 text-blue-900'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                     } group flex items-center px-2 py-2 text-base font-medium rounded-md`}
                   >
                     <item.icon
                       className={`${
-                        isActive ? 'text-primary-500' : 'text-gray-400 group-hover:text-gray-500'
+                        isActive ? 'text-blue-500' : 'text-gray-400 group-hover:text-gray-500'
                       } mr-4 flex-shrink-0 h-6 w-6`}
                     />
                     {item.name}
@@ -94,13 +94,13 @@ const AdminLayout = ({ children }) => {
                       to={item.href}
                       className={`${
                         isActive
-                          ? 'bg-primary-100 text-primary-900'
+                          ? 'bg-blue-100 text-blue-900'
                           : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                       } group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
                     >
                       <item.icon
                         className={`${
-                          isActive ? 'text-primary-500' : 'text-gray-400 group-hover:text-gray-500'
+                          isActive ? 'text-blue-500' : 'text-gray-400 group-hover:text-gray-500'
                         } mr-3 flex-shrink-0 h-6 w-6`}
                       />
                       {item.name}
@@ -126,7 +126,7 @@ const AdminLayout = ({ children }) => {
         <div className="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
           <button
             type="button"
-            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             onClick={() => setSidebarOpen(true)}
           >
             <Bars3Icon className="h-6 w-6" />

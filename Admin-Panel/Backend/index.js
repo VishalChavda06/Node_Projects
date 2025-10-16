@@ -1,25 +1,31 @@
-const express=require("express");
+require('dotenv').config();
+const express = require("express");
 const dbconnect = require("./config/db");
 const userRouter = require("./routes/userRoutes");
 const BlogPostRouter = require("./routes/blogPostRoutes");
 const commentRouter = require("./routes/commentRoutes");
 
-const app=express();
+const app = express();
 
 const cors = require("cors");
 app.use(cors());
 
-
 app.use(express.json());
 
-app.use("/users",userRouter)
+// Routes
+app.use("/users", userRouter);
+app.use("/blogPosts", BlogPostRouter);
+app.use("/comments", commentRouter);
 
-app.use("/blogPosts",BlogPostRouter)
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({ message: "Server is running", status: "OK" });
+});
 
-app.use("/comments",commentRouter)
+const PORT = process.env.PORT || 5000;
 
-app.listen(5000, () => {
-    console.log("App running at http://localhost:5000");
-    dbconnect()
-  });
+app.listen(PORT, () => {
+    console.log(`App running at http://localhost:${PORT}`);
+    dbconnect();
+});
   
