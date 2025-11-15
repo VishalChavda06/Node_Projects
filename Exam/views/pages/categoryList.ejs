@@ -1,0 +1,8 @@
+<%- include('../partials/header', { title: 'Categories', user: user }) %>
+  <h2>Categories</h2>
+  <ul>
+    <% categories.forEach(function(c){ %>
+      <li><%= c.name %></li>
+    <% }) %>
+  </ul>
+<%- include('../partials/footer') %>

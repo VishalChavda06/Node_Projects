@@ -1,0 +1,19 @@
+<%- include('../partials/header', { title: product ? 'Edit Product' : 'Create Product', user: user }) %>
+  <h2><%= product ? 'Edit Product' : 'Create Product' %></h2>
+  <form method="POST" action="<%= product ? ('/products/edit/'+product._id) : '/products/create' %>" class="form">
+    <label>Title</label>
+    <input name="title" value="<%= product ? product.title : '' %>" required />
+    <label>Description</label>
+    <textarea name="description"><%= product ? product.description : '' %></textarea>
+    <label>Price</label>
+    <input name="price" type="number" value="<%= product ? product.price : '' %>" required />
+    <label>Category</label>
+    <select name="category">
+      <option value="">-- Select --</option>
+      <% categories.forEach(function(c){ %>
+        <option value="<%= c._id %>" <%= product && product.category && (product.category.toString()===c._id.toString()) ? 'selected' : '' %>><%= c.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit"><%= product ? 'Update' : 'Create' %></button>
+  </form>
+<%- include('../partials/footer') %>

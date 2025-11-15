@@ -1,0 +1,28 @@
+<%- include('../partials/header', { user: user, title: 'Dashboard' }) %>
+  <h2>Dashboard</h2>
+  <p>Welcome, <%= user.username %> (<%= user.role %>)</p>
+  <% if (user.role === 'admin') { %>
+    <section>
+      <h3>Manage Categories</h3>
+      <form method="POST" action="/categories/create" class="form-inline">
+        <input name="name" placeholder="Category name" required />
+        <button type="submit">Create</button>
+      </form>
+      <ul>
+        <% (categories||[]).forEach(function(c){ %>
+          <li>
+            <%= c.name %>
+            <form method="POST" action="/categories/delete/<%= c._id %>" style="display:inline">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+  <% } %>
+  <section>
+    <h3>Your Actions</h3>
+    <a href="/products/create">Add Product</a>
+    <a href="/products/my">My Products</a>
+  </section>
+<%- include('../partials/footer') %>

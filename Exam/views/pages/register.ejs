@@ -1,0 +1,15 @@
+<%- include('../partials/header', { title: 'Register' }) %>
+  <h2>Register</h2>
+  <% if (typeof error !== 'undefined' && error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+  <form method="POST" action="/auth/register" class="form">
+    <label>Username</label>
+    <input name="username" required />
+    <label>Password</label>
+    <input type="password" name="password" required />
+    <label>Role (admin or user)</label>
+    <input name="role" />
+    <button type="submit">Register</button>
+  </form>
+<%- include('../partials/footer') %>

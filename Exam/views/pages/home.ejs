@@ -1,0 +1,20 @@
+<%- include('../partials/header', { user: user, title: 'Home' }) %>
+  <section class="hero">
+    <h1>Welcome to E-Commerce</h1>
+    <p>Simple exam-ready project</p>
+  </section>
+
+  <section class="products">
+    <h2>Products</h2>
+    <div class="grid">
+      <% products.forEach(function(p){ %>
+        <div class="card">
+          <h3><%= p.title %></h3>
+          <p><%= p.description %></p>
+          <p>Price: ₹<%= p.price %></p>
+          <p>Category: <%= p.category ? p.category.name : 'Uncategorized' %></p>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+<%- include('../partials/footer') %>
